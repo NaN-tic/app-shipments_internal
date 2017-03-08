@@ -90,7 +90,7 @@
                   </ion-col>
                 </ion-row>
                 <ion-row>
-                  <ion-col width-80 class="f-size">
+                  <ion-col width-80 class="f-size" (click)="itemSelected($event, item)">
                     <strong> {{ 'CATALOGUE_TOTAL_AMOUNT' | translate }} </strong>: {{ item.total_amount | number : '1.2-2' }} €
                   </ion-col>
                   <ion-col width-20 class="align-end">
