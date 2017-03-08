@@ -77,23 +77,21 @@
             <ion-card class="item-list item.state">
               <ion-grid>
                 <ion-row (click)="itemSelected($event, item)">
-                  <ion-col width-75 class="f-size">
+                  <ion-col width-100 class="f-size">
                     <strong> {{ 'CATALOGUE_REFERENCE' | translate }}</strong>: {{ item.reference }}
+                  </ion-col>
+                </ion-row>
+                <ion-row (click)="itemSelected($event, item)">
+                  <ion-col width-75 class="f-size">
+                    <strong> {{ 'CATALOGUE_SATE' | translate }} </strong>: {{ item.state | translate }}
                   </ion-col>
                   <ion-col width-25 class="align-end f-size">
                     <strong> {{ 'CATALOGUE_CODE' | translate }}</strong> : {{ item.code }}
                   </ion-col>
                 </ion-row>
-                <ion-row (click)="itemSelected($event, item)">
-                  <ion-col width-60 class="f-size">
-                    <strong> {{ 'CATALOGUE_SATE' | translate }} </strong>: {{ item.state | translate }}
-                  </ion-col>
-                  <ion-col width-40 class="align-end f-size">
-                    <strong> {{ 'CATALOGUE_TOTAL_AMOUNT' | translate }} </strong>: {{ item.total_amount | number : '1.2-2' }} €
-                  </ion-col>
-                </ion-row>
                 <ion-row>
-                  <ion-col (click)="itemSelected($event, item)" width-80>
+                  <ion-col width-80 class="f-size">
+                    <strong> {{ 'CATALOGUE_TOTAL_AMOUNT' | translate }} </strong>: {{ item.total_amount | number : '1.2-2' }} €
                   </ion-col>
                   <ion-col width-20 class="align-end">
                     <button ion-button icon-only [disabled]="item.state != 'draft'" (click)="deleteEntry($event, item)">

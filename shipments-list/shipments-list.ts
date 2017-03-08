@@ -37,11 +37,8 @@ export class ShipmentsListPage extends InfiniteList {
     ionViewWillEnter() {
         let json_constructor = new EncodeJSONRead
         console.log("Starting search procedure...")
-        this.list_items = []
         this.method = "stock.shipment.internal";
-        this.offset = 0;
         this.domain = [
-            json_constructor.createDomain("state", "in", ['draft', 'waiting']),
             json_constructor.createDomain("employee", "=",
                 this.driver.get('UserData').employee)];
 
@@ -55,7 +52,6 @@ export class ShipmentsListPage extends InfiniteList {
         if (this.inputReference) {
             let js_enc = new EncodeJSONRead()
             this.domain = [
-                js_enc.createDomain("state", "in", "['draft', 'waiting']"),
                 js_enc.createDomain("code", '=', this.inputReference)
             ];
             this.loadData()
@@ -132,9 +128,10 @@ export class ShipmentsListPage extends InfiniteList {
      * @return {null} No return
      */
     private setDefaultDomain() {
+        this.list_items = []
+        this.offset = 0;
         let json_constructor = new EncodeJSONRead()
         this.domain = [
-            json_constructor.createDomain("state", "in", ['draft', 'waiting']),
             json_constructor.createDomain("employee", "=",
                 this.driver.get('UserData').employee)];
             this.loadData()
