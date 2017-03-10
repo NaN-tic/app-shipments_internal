@@ -42,7 +42,7 @@ export class ShipmentsListPage extends InfiniteList {
             json_constructor.createDomain("employee", "=",
                 this.driver.get('UserData').employee)];
 
-        this.fields = ["code", "reference", "total_amount", "state"]
+        this.fields = ["code", "reference", "total_amount", "state", "planned_date"]
         this.loadData();
     }
 

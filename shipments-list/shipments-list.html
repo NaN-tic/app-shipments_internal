@@ -3,16 +3,16 @@
 
   <ion-toolbar>
     <ion-buttons left>
-      <button class="icon-padding" ion-button icon-only (click)="logout($event)">
+      <button class="icon-padding white" ion-button icon-only (click)="logout($event)">
         Logout
         <ion-icon name="log-out"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title class="main-title">
+    <ion-title class="main-title white">
         {{ "CATALOGUES_LIST_TITLE" | translate}}
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="itemSelected($event, false)">
+      <button class="white" ion-button icon-only (click)="itemSelected($event, false)">
         {{ "CREATE_NEW_CATALOG" | translate }}
         <ion-icon name="add"></ion-icon>
       </button>
@@ -114,4 +114,7 @@
 </ion-content>
 
 <ion-footer>
+  <div class="toolbar-background-md" ng-reflect-klass="toolbar-background" ng-reflect-ng-class="toolbar-background-md">
+    <img class="logo" src="img/logo-nan-tic-ca.svg"/>
+  </div>
 </ion-footer>
