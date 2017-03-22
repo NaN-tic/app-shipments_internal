@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ "SHIPMENT_DETAILS" | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div class="input_field">
+    <ion-list>
+      <ion-item>
+        <label color="primary"> {{'Product' | translate}}  : </label>
+        <input id="test" #focusInput2
+        type="none"
+        [(ngModel)]="itemInput"
+        (keyup.enter)="inputChange($event)" autofocus/>
+        <br>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <ion-grid responsive-sm>
+    <ion-row class="item-divider">
+       <ion-col width-75>
+          <strong class="table_labels">{{'Product' | translate}}</strong>
+        </ion-col>
+        <ion-col width-25 class="quantity_center">
+          <strong >{{'Quantity' | translate}}</strong>
+        </ion-col>
+      </ion-row>
+      <ion-row class="success" *ngFor="let item of shipmentLines; let i = index">
+        <ion-col width-75>{{item['product.rec_name']}}</ion-col>
+        <ion-col width-25 class="quantity_center">
+          <p> {{item.quantity}} </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+</ion-content>

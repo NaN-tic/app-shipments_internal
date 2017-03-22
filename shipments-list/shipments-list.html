@@ -9,16 +9,9 @@
       </button>
     </ion-buttons>
     <ion-title class="main-title white">
-        {{ "CATALOGUES_LIST_TITLE" | translate}}
+        {{ "SHIPMENT_LIST_TITLE" | translate}}
     </ion-title>
-    <ion-buttons end>
-      <button class="white" ion-button icon-only (click)="itemSelected($event, false)">
-        {{ "CREATE_NEW_CATALOG" | translate }}
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-toolbar>
-
 </ion-header>
 
 
@@ -28,83 +21,34 @@
   </ion-refresher>
 
   <ion-list>
-        <!-- Alternative view with list DO NOT DELETE
-    <ion-item>
-      <ion-label color="primary"> {{'CATALOGUE_CODE' | translate}} :</ion-label>
-      <ion-input [(ngModel)]="inputReference" (input)="newReference()"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-row class="item-divider">
-        <ion-col width-10>
-          <strong> {{ 'CATALOGUE_CODE' | translate }}</strong>
-        </ion-col>
-        <ion-col width-35>
-          <strong> {{ 'CATALOGUE_REFERENCE' | translate }}</strong>
-        </ion-col>
-        <ion-col width-25>
-          <strong> {{ 'CATALOGUE_SATE' | translate }} </strong>
-        </ion-col>
-        <ion-col width-10>
-          <strong> {{ 'CATALOGUE_TOTAL_AMOUNT' | translate }} </strong>
-        </ion-col>
-        <ion-col width-10>
-        </ion-col>
-      </ion-row>
-    </ion-item>
-
-    <ion-item class="item-list item.state" *ngFor="let item of list_items">
-      <ion-row>
-        <ion-col width-10 (click)="itemSelected($event, item)">
-          {{ item.code }} </ion-col>
-        <ion-col width-35 (click)="itemSelected($event, item)">
-          {{ item.reference }} </ion-col>
-        <ion-col width-25 (click)="itemSelected($event, item)">
-          {{ item.state | translate }} </ion-col>
-        <ion-col width-10 (click)="itemSelected($event, item)">
-          {{ item.total_amount | number : '1.2-2' }} €</ion-col>
-        <ion-col width-10>
-          <button ion-button icon-only [hidden]="item.state != 'draft'" (click)="deleteEntry($event, item)">
-              <ion-icon name="trash"></ion-icon>
-          </button>
+    <ion-grid>
+      <ion-row wrap responsive-sm>
+        <ion-col *ngFor="let item of list_items" col-1 width-50 sm-width-100>
+          <ion-card class="item-list item.state">
+            <ion-grid>
+              <ion-row (click)="itemSelected($event, item)">
+                <ion-col width-50 class="f-size">
+                  <strong> {{ 'SHIPMENT_CODE' | translate }}</strong> : {{ item.code }}
+                </ion-col>
+                <ion-col width-50 class="f-size align-end">
+                  <strong> {{'SHIPMENT_PLANNED_DATE' | translate }}</strong> : {{ item.planned_date }}
+                </ion-col>
+              </ion-row>
+              <ion-row (click)="itemSelected($event, item)">
+                <ion-col width-100 class="f-size">
+                  <strong> {{ 'SHIPMENT_REFERENCE' | translate }}</strong>: {{ item.reference }}
+                </ion-col>
+              </ion-row>
+              <ion-row (click)="itemSelected($event, item)">
+                <ion-col width-100 class="f-size">
+                  <strong> {{ 'SHIPMENT_STATE' | translate }} </strong>: {{ item.state | translate }}
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card>
         </ion-col>
       </ion-row>
-    </ion-item>
-  -->
-    <div background=#00000>
-      <ion-grid>
-        <ion-row wrap responsive-sm>
-          <ion-col *ngFor="let item of list_items" col-1 width-50 sm-width-100>
-            <ion-card class="item-list item.state">
-              <ion-grid>
-                <ion-row (click)="itemSelected($event, item)">
-                  <ion-col width-100 class="f-size">
-                    <strong> {{ 'CATALOGUE_REFERENCE' | translate }}</strong>: {{ item.reference }}
-                  </ion-col>
-                </ion-row>
-                <ion-row (click)="itemSelected($event, item)">
-                  <ion-col width-75 class="f-size">
-                    <strong> {{ 'CATALOGUE_SATE' | translate }} </strong>: {{ item.state | translate }}
-                  </ion-col>
-                  <ion-col width-25 class="align-end f-size">
-                    <strong> {{ 'CATALOGUE_CODE' | translate }}</strong> : {{ item.code }}
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col width-80 class="f-size" (click)="itemSelected($event, item)">
-                    <strong> {{ 'CATALOGUE_TOTAL_AMOUNT' | translate }} </strong>: {{ item.total_amount | number : '1.2-2' }} €
-                  </ion-col>
-                  <ion-col width-20 class="align-end">
-                    <button ion-button icon-only [disabled]="item.state != 'draft'" (click)="deleteEntry($event, item)">
-                  <ion-icon name="trash"></ion-icon>
-                </button>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
+    </ion-grid>
   </ion-list>
   <ion-infinite-scroll immediate-check="true" (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles">
