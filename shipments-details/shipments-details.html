@@ -9,11 +9,12 @@
   <div class="input_field">
     <ion-list>
       <ion-item>
-        <label color="primary"> {{'Product' | translate}}  : </label>
-        <input id="test" #focusInput2
+        <ion-label color="primary"> {{'Product' | translate}}  : </ion-label>
+        <ion-input id="test" #focusInput2
         type="none"
         [(ngModel)]="itemInput"
-        (keyup.enter)="inputChange($event)" autofocus/>
+        (keyup.enter)="inputChange($event)" autofocus>
+      </ion-input>
         <br>
       </ion-item>
     </ion-list>
