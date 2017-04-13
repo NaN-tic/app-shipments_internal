@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { NavController, NavParams, Events, AlertController } from 'ionic-angular';
 import { TranslateService } from 'ng2-translate';
 import { Locker } from 'angular-safeguard';
-import { SessionService } from 'angular2-tryton';
+import { SessionService } from 'angular2-tryton-4.0';
 
 import { InfiniteList } from '../../infinite-list/infinite-list';
 import { EncodeJSONRead } from '../../json/encode-json-read';
@@ -35,17 +35,13 @@ export class ShipmentsListPage extends InfiniteList {
 
         let json_constructor = new EncodeJSONRead
         this.method = "stock.shipment.internal";
-        this.domain = [
-            json_constructor.createDomain("company", "=",
-                this.driver.get('UserData').company),
-            ];
-
         this.fields = ["from_location", "to_location", "company",
-            "code", "reference", "state", "planned_date"]
+            "number", "reference", "state", "planned_date", "planned_start_date"]
     }
 
     ionViewWillEnter() {
-        console.log("Starting search procedure...")
+        console.log("Starting search procedure...");
+        this.setDefaultDomain();
         this.loadData();
     }
 
