@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{ "SHIPMENT_DETAILS" | translate}}</ion-title>
+    <ion-title>{{ "SHIPMENT_DETAILS" | translate}} : {{shipment.code}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -11,6 +11,7 @@
       <ion-item>
         <ion-label color="primary"> {{'Product' | translate}}  : </ion-label>
         <ion-input id="test" #focusInput2
+        [disabled] = "shipment.state == 'done' || shipment.state == 'assigned'"
         type="none"
         [(ngModel)]="itemInput"
         (keyup.enter)="inputChange($event)" autofocus>
@@ -22,19 +23,40 @@
 
   <ion-grid responsive-sm>
     <ion-row class="item-divider">
-       <ion-col width-75>
+       <ion-col width-70>
           <strong class="table_labels">{{'Product' | translate}}</strong>
         </ion-col>
-        <ion-col width-25 class="quantity_center">
+
+        <ion-col width-15 class="quantity_center">
+          <strong >{{'EXPECTED_QUANTITY' | translate}}</strong>
+        </ion-col>
+        <ion-col width-15 class="quantity_center">
           <strong >{{'Quantity' | translate}}</strong>
         </ion-col>
       </ion-row>
       <ion-row class="success" *ngFor="let item of shipmentLines; let i = index">
-        <ion-col width-75>{{item['product.rec_name']}}</ion-col>
-        <ion-col width-25 class="quantity_center">
+        <ion-col width-70>{{item['product.rec_name']}}</ion-col>
+        <ion-col width-15 class="quantity_center" >
           <p> {{item.quantity}} </p>
+        </ion-col>
+        <ion-col width-15 class="quantity_center">
+          <p> {{item.scanned_quantity}} </p>
         </ion-col>
       </ion-row>
     </ion-grid>
 
 </ion-content>
+<ion-footer>
+  <div class="toolbar-background-md" ng-reflect-klass="toolbar-background" ng-reflect-ng-class="toolbar-background-md">
+            <button ion-button (click)="save()" class="white" [hidden]="shipment.state == 'done' || shipment.state == 'assigned'">
+              {{ "SAVE" | translate}}
+            </button>
+      
+              <button ion-button (click)="nextStage(shipment.state)" color="#4996a9"
+              [hidden]="shipment.state == 'done'" style="float: right">
+                {{ "CLOSE" | translate}}
+                <ion-icon class="icon-padding" name="arrow-forward"></ion-icon>
+              </button>
+          
+  </div>
+</ion-footer>
